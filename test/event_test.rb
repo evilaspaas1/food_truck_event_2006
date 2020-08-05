@@ -33,4 +33,12 @@ class EventTest < Minitest::Test
     @event.add_food_truck(@food_truck3)
     assert_equal [@food_truck1, @food_truck2, @food_truck3], @event.food_trucks
   end
+
+  def test_it_can_get_food_truck_names
+    @event.add_food_truck(@food_truck1)
+    @event.add_food_truck(@food_truck2)
+    @event.add_food_truck(@food_truck3)
+    expected = ["Rocky Mountain Pies", "Ba-Nom-a-Nom", "Palisade Peach Shack"]
+    assert_equal expected, @event.food_truck_names
+  end
 end
