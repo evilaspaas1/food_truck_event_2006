@@ -22,4 +22,17 @@ class Event
       food_truck.check_stock(item) > 0
     end
   end
+
+  def total_inventory
+    event_inventory = Hash.new do |event_inventory, item|
+      event_inventory[item] = {quantity: 0, food_trucks: []}
+    end
+    @food_trucks.each do |food_truck|
+      food_truck.inventory.each do |food_truck_item, quantity|
+        event_inventory[food_truck_item][:quantity] += quantity
+        event_inventory[food_truck_item][:food_trucks] << food_truck
+      end
+    end
+    event_inventory
+  end
 end
